@@ -1,0 +1,45 @@
+body{
+    background-color: lightgray;
+}
+
+.card_mateus{
+    background-color: honeydew;
+    margin: 190px 500px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px 5px gray;
+}
+
+.text-align{
+    text-align: center;
+}
+
+.esqueceu{
+    
+    margin-right: auto;
+}
+
+
+a:link {
+    color: green;
+    text-decoration: none;
+  }
+  
+  /*Link já visitado*/
+  a:visited {
+    color: blue;
+    text-decoration: none;
+  }
+  
+  /*Quando o mouse passa por cima*/
+  a:hover {
+    color: pink;
+    text-decoration: none;
+  }
+  
+  /*Link ativo/selecionado*/
+  a:active {
+    color: yellow;
+    text-decoration: none;
+  }
+
+
