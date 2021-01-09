@@ -1,5 +1,5 @@
 
-let email = document.querySelector("#email");
+/*let email = document.querySelector("#email");
 let senha = document.querySelector("#senha");
 let form = document.querySelector("#form");
 
@@ -13,7 +13,12 @@ form.addEventListener("submit", function(event){
 
     fetch('https://slinky-api.herokuapp.com/login', {
         method: 'POST',
-        body: JSON.stringify(dados)
+        body: JSON.stringify(dados),
+        beforeSend: function(request) {
+            request.setRequestHeader("Content-Type", "application/json");
+            request.setRequestHeader("Accept", "application/json");
+            request.setRequestHeader("Access-Control-Allow-Origin", "*");
+          },
     })
     .then(function(response){
         console.log(response);
@@ -23,9 +28,10 @@ form.addEventListener("submit", function(event){
         //console.log(response);
         //alert("ok cadastro com sucesso")
     //})
+    
 
     console.log(dados);
-})
+})*/
 
 
 
@@ -51,7 +57,7 @@ xmlhttp.send();
 
 
 
-/*function fazerLogin () {
+function fazerLogin () {
     var email = document.getElementById("email").value;
     var senha = document.getElementById("senha").value;
 
@@ -63,8 +69,13 @@ xmlhttp.send();
     
     $.ajax({
         type : 'POST',
+        beforeSend: function(request) {
+            request.setRequestHeader("Content-Type", "application/json");
+            request.setRequestHeader("Accept", "application/json");
+            request.setRequestHeader("Access-Control-Allow-Origin", "*");
+          },
         url : 'https://slinky-api.herokuapp.com/login',
-        data : login,
+        data: JSON.stringify(login),
         dataType: "json",
         success: function(resposta){
             console.log(resposta);
@@ -72,7 +83,7 @@ xmlhttp.send();
 
     });
 
-}*/
+}
 
 
 
