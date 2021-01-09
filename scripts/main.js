@@ -1,5 +1,57 @@
 
-function fazerLogin () {
+let email = document.querySelector("#email");
+let senha = document.querySelector("#senha");
+let form = document.querySelector("#form");
+
+form.addEventListener("submit", function(event){
+    event.preventDefault();
+
+    let dados = {
+        email: email.value,
+        senha: senha.value
+    };
+
+    fetch('https://slinky-api.herokuapp.com/login', {
+        method: 'POST',
+        body: JSON.stringify(dados)
+    })
+    .then(function(response){
+        console.log(response);
+       // return response.json()
+    })
+   // .then(function(response){
+        //console.log(response);
+        //alert("ok cadastro com sucesso")
+    //})
+
+    console.log(dados);
+})
+
+
+
+
+/*function ajax(){
+var xmlhttp;
+
+if (window.XMLHttpRequest){
+    xmlhttp = new XMLHttpRequest;
+}else{
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+}
+
+xmlhttp.onreadystatechange = function(){
+    if(xmlhttp.readState == 4 && xmlhttp.status == 200){
+        document.getElementById("data").innerHTML = this.responseText;
+    }
+}
+
+xmlhttp.open('GET', 'arquivo.txt', true);
+xmlhttp.send();
+}*/
+
+
+
+/*function fazerLogin () {
     var email = document.getElementById("email").value;
     var senha = document.getElementById("senha").value;
 
@@ -20,7 +72,10 @@ function fazerLogin () {
 
     });
 
-}
+}*/
+
+
+
 /* var d = new Date();
 
  document.getElementById("data").innerHTML = d.toDateString();
