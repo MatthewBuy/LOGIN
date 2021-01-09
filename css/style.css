@@ -1,0 +1,14 @@
+body{
+    background-color: lightgray;
+}
+.card_mateus{
+    background-color: honeydew;
+    margin: 230px 500px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px 5px gray;
+}
+
+.alinhar{
+    text-align: center;
+
+}
