@@ -14,32 +14,53 @@
   <body>
 
 
-    <form class="row g-3 card_mateus was-validated">
+    <form class="row g-3 card_mateus needs-validation" novalidate>
         <div class="alinhar">
         <h5 class="card-title text-align">Registrar nova conta</h5>
             <p id="data"></p>
             <p class="card-text text-align">Por favor, digite o seu nome, e-mail e senha.</p>
             <hr>    
         </div>
-        <div class="col-md-4 ">
-          <label for="validationDefault01" class="form-label">Nome</label>
-          <input type="text" class="form-control" id="nome" placeholder="Mark" required>
+        <div class="col-md-4 position-relative">
+          <label for="validationTooltip01" class="form-label">Nome</label>
+          <input type="text" class="form-control" id="validationTooltip01" placeholder="Mark" required>
+          <div class="valid-tooltip">
+            Tudo certo!
+          </div>
+          <div class="invalid-feedback">
+            Por favor, informe um nome válido.
+          </div>
         </div>
-        <div class="col-md-6">
+        
+        <div class="col-md-6 position-relative">
           <label for="validationDefault02" class="form-label">E-mail</label>
           <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="name@example.com" required>
+          <div class="valid-tooltip">
+            Tudo certo!
+          </div>
+          <div class="invalid-feedback">
+            Por favor, informe um e-mail válido.
+          </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 position-relative">
           <label for="validationDefault03" class="form-label">Senha</label>
-          <input type="password" class="form-control" id="senha" minlength="8" maxlength="32"  placeholder="********" required>
+          <input type="password" class="form-control" id="senha" minlength="8" maxlength="32"  placeholder="********" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+)(?=^.{6,16}$).*$"  aria-describedby="passwordHelpBlock" required>
+          <div class="valid-tooltip">
+            Tudo certo!
+          </div>
+          <div class="invalid-feedback">
+            A senha deve conter.<br> 
+            1 Letra maiúscula, <br>
+            1 Número, <br>
+            1 Caracter especial <br>
+            E no mínimo 8 caracteres. <br>
+          </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 position-relative">
             <label for="validationDefault02" class="form-label">Repetir senha</label>
             <input type="password" class="form-control" id="repetirSenha" minlength="8" maxlength="32" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+)(?=^.{6,16}$).*$" placeholder="********" required>
+            
           </div>
-          <div id="passwordHelpBlock" class="form-text" >
-            A senha deve conter uma letra maiúscula, um número, um caracter especial e no mínimo 8 caracteres.
-         </div>
         <div class="col-12">
           <div class="form-check">
             <input class="form-check-input" id="primeiro_acesso" type="checkbox" value="" id="invalidCheck2" >
@@ -49,56 +70,13 @@
           </div>
         </div>
         <div class="col-12">
-          <button class="btn btn-primary" type="button" onclick="fazerRegistro()">Registrar</button>
+          <button class="btn btn-primary col-6 mx-auto" id="submitButton" data-toggle="tooltip" type="submit" onclick="fazerRegistro()">Registrar</button>
         </div>
       </form>
 
+      
 
-   <!--
-    <form>
-        <div class="card-body card_mateus">
-            <h5 class="card-title text-align">Registrar nova senha</h5>
-            <p id="data"></p>
-            <p class="card-text text-align">Por favor, digite o seu nome, e-mail e senha.</p>
-            <hr>    
-         <div class="row mb-3">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Nome</label>
-              <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputEmail3" placeholder="João de souza">
-                </div>
-              </div>
-        <div class="row mb-3">
-          <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-          <div class="col-sm-10">
-            <input type="email" class="form-control" id="inputEmail3"  placeholder="joao@example.com">
-          </div>
-        </div>
-        <div class="row mb-3">
-          <label for="inputPassword3" class="col-sm-2 col-form-label">Senha</label>
-          <div class="col-sm-10">
-            <input type="password" class="form-control" id="inputPassword3" placeholder="********">
-          </div>
-        </div>
-        <fieldset class="row mb-3">
-          <legend class="col-form-label col-sm-2 pt-0">Redefinir senha primeiro acesso!</legend>
-          <div class="col-sm-10">
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-              <label class="form-check-label" for="gridRadios1">
-                Sim
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-              <label class="form-check-label" for="gridRadios2">
-                Não
-              </label>
-            </div>
-          </div>
-        </fieldset>
-        <button type="submit" class="btn btn-primary">Sign in</button>
-      </form>
-        -->
+   
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
