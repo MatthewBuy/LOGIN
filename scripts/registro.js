@@ -17,17 +17,16 @@
     }, false);
   })();
 
+  
 
-function fazerRegistro () {
+    function fazerRegistro () {
     var nome = document.querySelector("#nome");
     var email = document.querySelector("#email");
     var acesso = document.getElementById("primeiro_acesso");
     var repSenha = document.querySelector("#repetirSenha");
-    var senha = document.querySelector("#senha");
+    var senha = document.querySelector("#senha"); 
 
-    
-   var token = window.localStorage.getItem("token");
-    console.log(token);
+    var token = window.localStorage.getItem("token");
 
     var registro = {
         nome : nome.value,

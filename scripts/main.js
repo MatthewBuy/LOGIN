@@ -44,6 +44,7 @@ function fazerLogin () {
         dataType: "json",
         success: function(resposta){
             localStorage.setItem("token", resposta.token);
+            location.href="tabela.html";
             console.log(resposta);
         }    
     });
