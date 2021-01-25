@@ -2,13 +2,13 @@ body{
     background-color: lightgray;
 }
 
-.card_mateus{
-    background-color: honeydew;
-    margin: 190px 500px;
-    border-radius: 10px;
-    box-shadow: 10px 10px 10px 5px gray;
-}
-
+.mateus{
+  margin-top: 13%;
+  box-shadow: 10px 10px 10px 5px gray;
+  width:40rem; 
+  margin-left: 30%;
+  }
+  
 .text-align{
     text-align: center;
 }
@@ -41,5 +41,4 @@ a:link {
     color: yellow;
     text-decoration: none;
   }
-
 

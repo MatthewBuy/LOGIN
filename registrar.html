@@ -13,15 +13,17 @@
   <link rel="stylesheet" href="css/style.css">
   <body>
 
-
-    <form class="row g-3 card_mateus needs-validation" novalidate>
+    <div class="card mateus">
+    <form class="g-3 needs-validation card-body form-horizontal" novalidate>
+      <div class="card-header">
         <div class="alinhar">
-        <h5 class="card-title text-align">Registrar nova conta</h5>
+          <h5 id="textoInfo" class="card-title text-align">Registrar nova conta</h5>
             <p id="data"></p>
             <p class="card-text text-align">Por favor, digite o seu nome, e-mail e senha.</p>
-            <hr>    
         </div>
-        <div class="col-md-4 position-relative">
+      </div>
+      <div class="row">
+        <div class="col-md-6 position-relative">
           <label for="validationTooltip01" class="form-label">Nome</label>
           <input type="text" class="form-control" id="nome" placeholder="Mark" required>
           <div class="valid-tooltip">
@@ -31,7 +33,6 @@
             Por favor, informe um nome válido.
           </div>
         </div>
-        
         <div class="col-md-6 position-relative">
           <label for="validationDefault02" class="form-label">E-mail</label>
           <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="name@example.com" required>
@@ -42,41 +43,68 @@
             Por favor, informe um e-mail válido.
           </div>
         </div>
+      </div>
+      <div class="row">
         <div class="col-md-6 position-relative">
           <label for="validationDefault03" class="form-label">Senha</label>
           <input type="password" class="form-control" id="senha" minlength="8" maxlength="32"  placeholder="********" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+)(?=^.{6,16}$).*$"  aria-describedby="passwordHelpBlock" required>
           <div class="valid-tooltip">
             Tudo certo!
           </div>
-          <div class="invalid-feedback">
-            A senha deve conter.<br> 
-            1 Letra maiúscula, <br>
-            1 Número, <br>
-            1 Caracter especial <br>
-            E no mínimo 8 caracteres. <br>
+        </div>
+        <div class="invalid-feedback">
+          A senha deve conter.<br> 
+          1 Letra maiúscula, <br>
+          1 Número, <br>
+          1 Caracter especial <br>
+          E no mínimo 8 caracteres. <br>
+        </div>
+        <div class="col-md-6 position-relative">
+          <label for="validationDefault02" class="form-label">Repetir senha</label>
+          <input type="password" class="form-control" id="repetirSenha" minlength="8" maxlength="32" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+)(?=^.{6,16}$).*$" placeholder="********" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 position-relative mt-4">
+          <div class="row">
+            <div class="col-md-12">
+              <input class="form-check-input" id="primeiro_acesso" type="checkbox" value="" id="invalidCheck2" >
+              <label class="form-check-label"  for="invalidCheck2">
+                  Redefinir senha primeiro acesso!
+              </label>
+            </div>
+            <div class="col-md-12">
+              <input class="form-check-input" id="Ativo" type="checkbox" value="" id="invalidCheck2" >
+              <label class="form-check-label"  for="invalidCheck2">
+                  Ativo
+              </label>
+            </div>    
           </div>
         </div>
         <div class="col-md-6 position-relative">
-            <label for="validationDefault02" class="form-label">Repetir senha</label>
-            <input type="password" class="form-control" id="repetirSenha" minlength="8" maxlength="32" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+)(?=^.{6,16}$).*$" placeholder="********" required>
-            
-          </div>
+          <label for="validationDefault02" class="form-label">Tipo</label>
+          <select id="tipo" class="form-select" aria-label="Default select example">
+            <option selected>Selecione</option>
+            <option value="SLINKY">Slinky</option>
+            <option value="FORNECEDOR">Fornecedor</option>
+            <option value="TRANSPORTADORA">Transportadora</option>
+          </select>
+        </div>
+      </div>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4" style="margin-bottom: 15px;">
+        <button class="btn btn-outline-primary col-6 "  id="submitButton" data-toggle="tooltip" type="button" onclick="verificarButton()">Registrar</button>
+        <button class="btn btn-outline-primary col-6 "  id="voltarButton" data-toggle="tooltip" type="button" onclick="Voltar()">Voltar</button>
+      </div>
+      <div class="row">
         <div class="col-12">
-          <div class="form-check">
-            <input class="form-check-input" id="primeiro_acesso" type="checkbox" value="" id="invalidCheck2" >
-            <label class="form-check-label"  for="invalidCheck2">
-                Redefinir senha primeiro acesso!
-            </label>
+          <div class="text-center" id="loader" style="display: none;">
+            <img src="imagens/ajax-loader.gif" >
           </div>
         </div>
-        <div class="col-12 alinhar">
-          <button class="btn btn-outline-primary col-6 mx-auto"  id="submitButton" data-toggle="tooltip" type="submit" onclick="fazerRegistro()">Registrar</button>
-        </div>
-      </form>
-
+      </div>
       
-
-   
+      </form>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>

@@ -1,50 +1,14 @@
-
-$(document).ready(function(){
-
-
-});
-
 var token = window.localStorage.getItem("token");
 
 var queries = {};
-$.each(document.location.search.substr(1).split('&'),function(c,q){
-  var i = q.split('=');
-  queries[i[0].toString()] = i[1].toString();
-});
-console.log(queries.idUsuario);
-
-$.ajax({
-  type : 'GET',
-  beforeSend: function(request) {
-      request.setRequestHeader("Content-Type", "application/json");
-      request.setRequestHeader("Accept", "application/json");
-      request.setRequestHeader("Access-Control-Allow-Origin", "*");
-      request.setRequestHeader("Authorization", "Bearer " + token);
-    },
-    
-  url : 'https://slinky-api.herokuapp.com/usuarios/'+queries.idUsuario,
-  data: JSON.stringify(queries),
-  dataType: "json",
-  success: function(idResposta){
-    var idNome = idResposta.nome;
-    var idEmail = idResposta.email;
-
-    document.querySelector("#nome").value = idNome;
-    email = document.querySelector("#email").value = idEmail;
-
-  },
-  error: function(response){
-      console.log(response);
-  }
-
-});
-
-
-//var idNome = document.querySelector("#nome").innerHTML = queries.idUsuario;
-//var idEmail = document.querySelector("#email").innerHTML = queries.idUsuario ;
-
-
-
+  $.each(document.location.search.substr(1).split('&'),function(c,q){
+    var i = q.split('=');
+    if(q != ""){
+      queries[i[0].toString()] = i[1].toString();
+      console.log(queries.idUsuario); 
+      BuscarUsuario(queries);
+    }
+  });
 
 (function() {
     'use strict';
@@ -64,55 +28,151 @@ $.ajax({
     }, false);
   })();
 
-    function fazerRegistro () {
-    var nome = document.querySelector("#nome");
-    var email = document.querySelector("#email");
-    var acesso = document.getElementById("primeiro_acesso");
-    var repSenha = document.querySelector("#repetirSenha");
-    var senha = document.querySelector("#senha"); 
-
-
-    
-    console.log(idResposta.nome);
-
-    var registro = {
-        nome : nome.value,
-        email : email.value,
-        redefinir_senha_primeiro_acesso : acesso.checked,
-        senha : senha.value,
-        repSenha : repSenha.value,
-        tipo : "SLINKY",
-        ativo: true
+function fazerRegistro() {
+  var nome     = document.querySelector("#nome");
+  var email    = document.querySelector("#email");
+  var acesso   = document.querySelector("#primeiro_acesso");
+  var ativo    = document.querySelector("#Ativo");
+  var repSenha = document.querySelector("#repetirSenha");
+  var senha    = document.querySelector("#senha"); 
+  var tipo     = $('#tipo').val();
+ 
+  var registro = {
+    nome : nome.value,
+    email : email.value,
+    redefinir_senha_primeiro_acesso : acesso.checked,
+    senha : senha.value,
+    repSenha : repSenha.value,
+    tipo : tipo,
+    ativo: ativo.checked  
     };
 
-
-
-    console.log(registro);
-
-    if(senha.value == repSenha.value){
-        $.ajax({
-            type : 'POST',
-            beforeSend: function(request) {
-                request.setRequestHeader("Content-Type", "application/json");
-                request.setRequestHeader("Accept", "application/json");
-                request.setRequestHeader("Access-Control-Allow-Origin", "*");
-                request.setRequestHeader("Authorization", "Bearer " + token);
-              },
-              
-            url : 'https://slinky-api.herokuapp.com/usuarios',
-            data: JSON.stringify(registro),
-            dataType: "json",
-            success: function(resposta){
-                console.log(resposta);
-            },
-            error: function(response){
-                console.log(response);
-            }
-    
-        });
-    }else{
-        alert("As senhas não batem.")
-    }
+  if (senha.value == repSenha.value) {
+      FazerRegistro(registro);
+  } else {
+      alert("As senhas não batem.")
+  }
 }
 
-document.getElementById("nome").innerHTML = "funfo";
+function editarUsuario() {
+  var nome     = document.querySelector("#nome");
+  var email    = document.querySelector("#email");
+  var acesso   = document.querySelector("#primeiro_acesso");
+  var ativo    = document.querySelector("#Ativo");
+  var repSenha = document.querySelector("#repetirSenha");
+  var senha    = document.querySelector("#senha"); 
+  var tipo     = $('#tipo').val();
+
+  var atualizarRegistro = {
+    nome : nome.value,
+    email : email.value,
+    redefinir_senha_primeiro_acesso : acesso.checked,
+    senha : senha.value,
+    repSenha : repSenha.value,
+    tipo : tipo,
+    ativo: ativo.checked  
+  };
+
+  if (senha.value == repSenha.value){
+      EditarUsuario(atualizarRegistro);
+  } else {
+      alert("As senhas não batem.")
+  }
+
+
+}
+
+function Voltar() {
+    window.location.href="tabela.html";
+}
+
+function FazerRegistro(registro) {
+  $.ajax({
+    type : 'POST',
+      beforeSend: function(request) {
+        request.setRequestHeader("Content-Type", "application/json");
+        request.setRequestHeader("Accept", "application/json");
+        request.setRequestHeader("Access-Control-Allow-Origin", "*");
+        request.setRequestHeader("Authorization", "Bearer " + token);  
+        $("#loader").show();
+      },
+    url : 'https://slinky-api.herokuapp.com/usuarios',
+    data: JSON.stringify(registro),
+    dataType: "json",
+    complete:function() {
+      $("#loader").hide();
+    },
+    success: function(resposta) {
+      console.log(resposta);
+
+    },
+    error: function(response) {
+      console.log(response);
+    }
+  });
+}
+
+function BuscarUsuario(queries) {
+  $.ajax({
+    type : 'GET',
+      beforeSend: function(request) {
+        request.setRequestHeader("Content-Type", "application/json");
+        request.setRequestHeader("Accept", "application/json");
+        request.setRequestHeader("Access-Control-Allow-Origin", "*");
+        $("#loader").show();
+        request.setRequestHeader("Authorization", "Bearer " + token);
+      },
+    url : 'https://slinky-api.herokuapp.com/usuarios/'+queries.idUsuario,
+    dataType: "json",
+    complete:function(){
+      $("#loader").hide();
+    },
+    success: function(resposta){
+      var idNome = resposta.nome;
+      var idEmail = resposta.email;
+      document.querySelector("#nome").value = idNome;
+      email = document.querySelector("#email").value = idEmail;
+      document.getElementById("textoInfo").innerHTML = "Editar conta";
+      document.getElementById("submitButton").innerHTML = "Atualizar";
+    },
+    error: function(response){
+      console.log(response);
+    }
+  });
+}
+
+function EditarUsuario(atualizarRegistro) {
+  $.ajax({
+    type : 'PUT',
+    beforeSend: function(request) {
+      request.setRequestHeader("Content-Type", "application/json");
+      request.setRequestHeader("Accept", "application/json");
+      request.setRequestHeader("Access-Control-Allow-Origin", "*");
+      $("#loader").show();
+      request.setRequestHeader("Authorization", "Bearer " + token);
+    },
+    url : 'https://slinky-api.herokuapp.com/usuarios/'+queries.idUsuario,
+    data: JSON.stringify(atualizarRegistro),
+    dataType: "json",
+    complete:function() {
+      $("#loader").hide();
+    },
+    success: function(resposta) {
+      console.log(resposta);
+      window.location.href="tabela.html"
+    },
+    error: function(response) {
+      console.log(response);
+    }
+  });
+}
+
+
+function verificarButton() {
+  if(document.getElementById("submitButton").innerHTML == "Atualizar") {
+    editarUsuario();
+  } else {
+    fazerRegistro();
+  }
+}
+
