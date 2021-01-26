@@ -51,14 +51,15 @@
     </div>
     </table>
     <div class="row">
-      <div class="col-12">
+      <div class="col">
         <nav aria-label="Navegação de página exemplo">
-          <ul class="pagination">
+          <ul  class="pagination">
             <li onclick="proximoAnterior(-1)" class="page-item"><a class="page-link" href="#">Anterior</a></li>
-            <li onclick="paginaUnica(1)" class="page-item"><a class="page-link" href="#">1</a></li>
-            <li onclick="paginaUnica(2)" class="page-item"><a class="page-link" href="#">2</a></li>
-            <li onclick="paginaUnica(3)" class="page-item"><a class="page-link" href="#">3</a></li>
+            <li onclick='paginaUnica(1)' class='page-item'><a class='page-link' href='#'>1</a></li>
+            <ul  id="contador" class="pagination"> </ul>
             <li onclick="proximoAnterior(1)" class="page-item"><a class="page-link" href="#">Próximo</a></li>
+         
+
           </ul>
         </nav>
       </div>
